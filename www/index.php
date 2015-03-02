@@ -8,7 +8,7 @@ define('DEFAULT_LOCALE', 'ru');
 require('../vendor/autoload.php');
 
 /** Set supported locales */
-setlocales('ru');
+setlocales('ru', 'en', 'ua');
 
 /** Start SamsonPHP web-application */
 s()

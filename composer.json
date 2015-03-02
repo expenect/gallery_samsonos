@@ -12,6 +12,7 @@
 
     },
 	"require-dev": {
+        "samsonos/php_pager":"*",
         "samsonos/php_core":"*",
         "samsonos/php_resourcer":"*",
         "samsonos/php_activerecord": "*",

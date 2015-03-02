@@ -1,0 +1,22 @@
+.i18n-list {
+  position: absolute;
+  margin-left:1040px;
+
+  li {/* Locale block container */
+    display: inline-block;
+    margin-left:5px;
+    /** Current active locale class */
+    &.i18n-active {
+      a{
+        background-color: yellowgreen;
+      }
+    }
+
+    /** Default locale inner text block class */
+    &.i18n-locale-en a:before { content:"EN"; }
+    /** Supported locale inner text block classes */
+    &.i18n-locale-ru a:before { content:"RU"; }
+
+    &.i18n-locale-ua a:before { content:"UA"; }
+  }
+}

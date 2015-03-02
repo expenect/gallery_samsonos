@@ -5,7 +5,7 @@ ul {
 
 a{
     text-decoration:none;
-    color:#fff;
+    color:#000;
     cursor:pointer;
 }
 
@@ -141,7 +141,7 @@ body{
 }
 
 #sort{
-    width:500px;
+    width:700px;
 }
 
 #sort a{
@@ -179,6 +179,11 @@ body{
     padding-bottom: 5px;
 }
 
+#footer_container tr > td > ul > li > a{
+    color:#fff;
+}
+
+
 #footer_container tr > td > ul > li > a:hover{
     color:#000;
 }
@@ -198,4 +203,18 @@ body{
     width:17px;
     z-index:999;
 
+}
+
+#pager{
+    width:100%;
+    text-align: center;
+}
+
+#pager li{
+    display: inline-block;
+    margin-left:3px;
+}
+
+#pager .active {
+    color:#00a651;
 }

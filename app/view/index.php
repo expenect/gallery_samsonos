@@ -11,15 +11,15 @@
             </a>
             <ul id="menu">
                 <li>
-                    <a href="">Синхроный</a>
+                    <a href=""><?php t('Synchronous');?></a>
                 </li>
                 <li>
-                    <a href="">Асинхроный</a>
+                    <a href=""><?php t('Asynchronous');?></a>
                 </li>
             </ul>
         </div>
     </div>
-
+        <?php m('i18n')->render('list')?>
 		<?php m()->render()?>
 
     <div id="layer_footer">
@@ -27,18 +27,21 @@
             <table id="footer_container">
                 <thead>
                 <tr>
-                    <td><h3>Посилання</h3></td>
+                    <td><h3><?php t('Link');?></h3></td>
                     <td><h3>SHOOTER</h3></td>
-                    <td><h3>Call-центр</h3></td>
+                    <td><h3><?php t('Contacts');?></h3></td>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>
                         <ul>
-                            <li><a href="#">Головна</a></li>
-                            <li><a href="#">Галерея</a></li>
-                            <li><a href="#">Контакти</a></li>
+                            <li>
+                                <a href=""><?php t('Synchronous');?></a>
+                            </li>
+                            <li>
+                                <a href=""><?php t('Asynchronous');?></a>
+                            </li>
                         </ul>
                     </td>
                     <td>
@@ -48,11 +51,9 @@
                             Pancetta beef ribs.</p>
                     </td>
                     <td>
-                        <p>Цілодобовий прийом дзвінків</p>
-                        <p>Інтернет-система "Галерея"</p>
-                        <p>2010–2015</p>
-                        <p>Expenect</p>
-                        <p>Всі права захищено 2014 р.</p>
+                        <p><?php t('Hour reception calls')?></p>
+                        <p><?php t('Internet-system "Gallery"')?></p>
+                        <p><?php t('All rights reserved 2015');?></p>
                     </td>
                 </tr>
                 </tbody>
