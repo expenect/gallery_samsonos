@@ -1,0 +1,1 @@
+<form action="<?php url_base('gallery', 'save', 'list', 'date', 'DESC', '1')?>/" method="post" enctype="multipart/form-data">

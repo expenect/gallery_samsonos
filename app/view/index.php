@@ -19,9 +19,7 @@
             </ul>
         </div>
     </div>
-        <?php m('i18n')->render('list')?>
 		<?php m()->render()?>
-
     <div id="layer_footer">
         <div class="wrapper">
             <table id="footer_container">

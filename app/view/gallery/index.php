@@ -1,36 +1,18 @@
 <div id="content" class="wrapper">
-    <div id="sort">
-        <div id="download" class="wrapper">
-            <br/>
-            <a href="<?php url_base('gallery', 'form');?>">
-                <?php t('New file');?>
-            </a>
-            <br/>
-            <i style="color:red;">
-                <?php
-                if (isset($_SESSION['message'])) {
-                    t($_SESSION['message']);
-                    unset ($_SESSION['message']);
-                }
-                ?></i>
-            <hr/>
+    <div class="top_menu">
+        <div id="line1">
+            <!--        Load sorter menu-->
+            <?php iv('gallery_sorter')?>
         </div>
-        <br/>
-        <div id="sort">
-             <?php t('Sort by:');?>
-            <a class="sorter" href="<?php url_base('gallery', 'list', 'date', 'asc', 'current_page')?>"><?php t('Date');?> ASC</a>
-            <a class="sorter" href="<?php url_base('gallery', 'list', 'date', 'desc', 'current_page')?>"><?php t('Date');?> DESC</a>
-            <a class="sorter" href="<?php url_base('gallery', 'list', 'size', 'asc', 'current_page')?>"><?php t('Size');?> ASC</a>
-            <a class="sorter" href="<?php url_base('gallery', 'list', 'size', 'desc', 'current_page')?>"><?php t('Size');?> DESC</a>
+        <div id="line2">
+            <!--        Load pager-->
+            <ul id="pager"><?php iv('pager_html')?></ul>
+            <!--        Load language switcher-->
+             <?php m('i18n')->render('list')?>
         </div>
     </div>
-<table id="cont_tab">
-    <?php iv('items');?>
-</table>
+    <div class="gallery-container">
+        <!-- Load list of images-->
+        <?php iv('gallery_list')?>
+    </div>
 </div>
-<div class="wrapper">
-    <ul id="pager">
-        <?php iv('pager_html')?>
-    </ul>
-</div>
-
