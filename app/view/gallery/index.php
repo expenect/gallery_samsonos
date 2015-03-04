@@ -8,7 +8,7 @@
             <!--        Load pager-->
             <ul id="pager"><?php iv('pager_html')?></ul>
             <!--        Load language switcher-->
-             <?php m('i18n')->render('list')?>
+
         </div>
     </div>
     <div class="gallery-container">

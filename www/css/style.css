@@ -160,7 +160,7 @@ body{
     margin-left:100px;
     margin-top:25px;
     width:17px;
-    z-index:999;
+    z-index:900;
 
 }
 
@@ -201,4 +201,9 @@ body{
 
 .item_gallery a:hover{
     color:#00a651;
+}
+
+
+#item, .upload_form {
+    color:#fff;
 }

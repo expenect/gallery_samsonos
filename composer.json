@@ -13,6 +13,7 @@
     },
 	"require-dev": {
         "samsonos/js_tinybox":"*",
+        "samsonphp/upload":"*",
         "samsonos/php_pager":"*",
         "samsonos/php_core":"*",
         "samsonos/php_resourcer":"*",

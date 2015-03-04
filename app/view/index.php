@@ -6,7 +6,7 @@
 	<body id="<?php iv('id')?>">
     <div id="layer_head">
         <div class="wrapper">
-            <a href="">
+            <a href="<?php url_base('gallery', 'list', 'date', 'desc', '1');?>" class="logo_url">
                 <div id="logo"></div>
             </a>
             <ul id="menu">
@@ -19,6 +19,7 @@
             </ul>
         </div>
     </div>
+    <?php m('i18n')->render('list')?>
 		<?php m()->render()?>
     <div id="layer_footer">
         <div class="wrapper">

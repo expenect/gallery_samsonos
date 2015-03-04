@@ -99,15 +99,15 @@ function gallery_async_form($id = null)
      * of success store record into $dbItem variable
      */
     if (dbQuery('photo')->id($id)->first($dbItem)) {
-        $form = m()->view('gallery/NewFile')->img($dbItem)->output();
+        $form = m()->view('gallery/form/newfile')->img($dbItem)->output();
         // Render the form to redact item
-        $result['form'] = m()->view('gallery/form/index')->title('Redact form')->image($dbItem)->form($form)->output();
+        $result['form'] = m()->view('gallery/form/index')->title('Redact form')->sorter($_SESSION['sorter'])->direction($_SESSION['direction'])->current_page($_SESSION['SamsonPager_current_page'])->img($dbItem)->form($form)->output();
     } elseif (isset($id)) {
         // File with passed ID wasn't find in DB
-        $result['form'] = m()->view('gallery/form/notfoundID')->title('Not Found')->output();
+        $result['form'] = m()->view('gallery/form/not_found')->title('Not Found')->output();
     } else {
         // No ID was passed
-        $result['form'] = m()->view('gallery/form/newfile')->title('New Photo')->output();
+        $result['form'] = m()->view('gallery/form/newfile')->title('New Photo')->sorter($_SESSION['sorter'])->direction($_SESSION['direction'])->current_page($_SESSION['SamsonPager_current_page'])->output();
     }
     return $result;
 }
@@ -138,6 +138,7 @@ function gallery_async_save()
         // Save image name
         if (isset($_POST['description'])) {
             $dbItem->description = filter_var($_POST['description']);
+            $dbItem->date_edit = date("y-m-d h:m:s");
             $dbItem->save();
             $result = array('status' => 1);
         }
@@ -148,25 +149,54 @@ function gallery_async_save()
             $name = $_FILES["img"]["name"];
 
             // Create upload dir with correct rights
-            if (!file_exists('img/upload')) {
-                mkdir('img/upload', 0775);
+            if (!file_exists('upload')) {
+                mkdir('upload', 0775);
             }
 
-            $new_name = 'upload/photo'.md5(time()).$name;
+            $new_name = 'upload/'.md5(time()).$name;
 
             // If file has been created
             if (move_uploaded_file($tmp_name, $new_name)) {
                 // Store file in upload dir
-                $dbItem->url = $new_name;
-                $dbItem->size = $_FILES["file"]["size"];
-                $dbItem->date = date("y-m-d h:m:s");
+
+                $dbItem->size = $_FILES["img"]["size"];
+                unlink(substr($dbItem->url,1,strlen($dbItem->url)-1));
                 // Save image
+                $dbItem->url = '/'.$new_name;
                 $dbItem->save();
                 $result = array('status' => 1);
             }
-
         }
+    }
+    return $result;
+}
 
+function gallery_async_upload()
+{
+    // Create AJAX response array
+    $result = array('status' => 0);
+    // Create an empty SQL query
+    $dbItem = new \samson\activerecord\photo(false);
+
+    // Create object for uploading file to server
+    $upload = new \samsonphp\upload\Upload(array('png','jpg', 'jpeg'));
+
+    if ($upload->upload($filePath, $fileName, $realName)) {
+        // Store the path to the uploaded file in the DB
+        $dbItem->url = $filePath;
+        // Save file size to the DB
+        $dbItem->size = $upload->size();
+        // Save the original name of the picture in the DB
+        $name = substr($realName,strpos($realName,"."));
+
+        $dbItem->description = substr($realName,0,strlen($realName)-strlen($name));
+
+        $dbItem->date = date("y-m-d h:m:s");
+        $dbItem->date_edit = date("y-m-d h:m:s");
+        // Execute the query
+        $dbItem->save();
+        // Change result status for successful asynchronous action
+        $result['status'] = 1;
     }
 
     return $result;
@@ -208,13 +238,13 @@ function gallery_save()
             $tmp_name = $_FILES['img']['tmp_name'];
             $name = $_FILES['img']['name'];
 
-            if (!file_exists('img/upload')) {
-                mkdir('img/upload', 0775);
+            if (!file_exists('upload')) {
+                mkdir('upload', 0775);
             }
 
             $new_name = 'upload/photo'.md5(time()).$name;
 
-            if (move_uploaded_file($tmp_name, 'img/'.$new_name)) {
+            if (move_uploaded_file($tmp_name, $new_name)) {
                 $dbItem->size = $_FILES['img']['size'];
                 $dbItem->url = $new_name;
                 $dbItem->date = date("y-m-d h:m:s");
@@ -266,9 +296,9 @@ function gallery_async_delete($id)
     $dbItem = null;
     if (dbQuery('photo')->id($id)->first($dbItem)) {
         // Delete uploaded file
-        unlink($dbItem->url);
-        // Delete DB record about this file
-        $dbItem->delete();
+        unlink(substr($dbItem->url,1,strlen($dbItem->url)-1));
+            // Delete DB record about this file
+            $dbItem->delete();
         // If deleted change the result status to 1
         $result['status'] = 1;
     }

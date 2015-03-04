@@ -6,12 +6,13 @@
 
     <a class="edit" href="<?php url_base('gallery', 'form', 'img_id');?>">
         <div class="img_resize">
-            <img src="img/<?php iv('img_url') ?>" alt=""/>
+            <img src="<?php iv('img_url') ?>" alt=""/>
         </div>
         <?php iv('img_description')?>
     </a>
 
     <p><?php iv('img_date')?></p>
+    <p><?php iv('img_date_edit')?></p>
 
     <a href="<?php url_base('gallery', 'form', 'img_id');?>" class="btn edit">
         <?php t('Edit');?>

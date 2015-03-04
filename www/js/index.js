@@ -6,20 +6,46 @@ s(document.body).pageInit(function(body){
     });
 });
 
-function edit(btn){
+var edit = function(btn){
     btn.tinyboxAjax({
         // Set the response container name
         html : 'form',
         // Close tinybox on click elsewhere besides the box
         oneClickClose : true,
         renderedHandler : function(form, tb) {
-            var uploadForm = s('form', form);
+            uploadForm = s('form', form);
             uploadForm.ajaxSubmit(function(response){
                 // Call load function after uploading the file
                 load(response);
                 // Close tinybox
                 tb.close();
             });
+
+            /* Upload module support start */
+            // Cache file input
+            file = s('.__upload');
+            // Bind upload event
+            uploadFileHandler(file, {
+                // Handle event after upload finishing
+                response: function (response) {
+                    try
+                    {
+                        // Parse server response
+                        response = JSON.parse(response);
+
+                        // If external response handler is passed
+                        if( responseHandler ) responseHandler( response, form);
+                    }
+                    catch(e){s.trace(e.toString())}
+
+                    // Call load function after uploading the file
+                    load(response);
+                    // Close tinybox
+                    tb.close();
+                }
+
+            });
+            /* Upload module support end */
         }
     });
 
@@ -33,6 +59,7 @@ var load = function(response)
         s('#line1').html(response.sorter);
     }
     s('li a', pager).ajaxClick(load);
+    s('.logo_url').ajaxClick(load);
     s('.sorter').ajaxClick(load);
     s('.delete').ajaxClick(load, function(btn){
         return confirm(s('.delete_message', btn.parent()).val());

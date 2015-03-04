@@ -1,4 +1,4 @@
-<a class="btn_update" href="<?php url_base('gallery', 'list')?>"><?php t('Upload photo')?></a>
+<a class="upload_btn" href="<?php url_base('gallery', 'form')?>"><?php t('Upload photo')?></a>
 <br/>
 <hr/>
 <?php t('Sort by:')?>
