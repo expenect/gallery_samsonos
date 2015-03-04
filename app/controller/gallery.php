@@ -6,9 +6,9 @@
  * Time: 16:16
  */
 
-function gallery_list($sorter = null, $direction = null, $currentPage = 1, $pageSize = 3)
+function gallery_list($sorter = null, $direction = null, $currentPage = null, $pageSize = 3)
 {
-  /*  if (!isset($sorter)) {
+    if (!isset($sorter)) {
         $sorter = isset($_SESSION['sorter'])?$_SESSION['sorter']:'date';
     } else {
         $_SESSION['sorter'] = $sorter;
@@ -25,7 +25,7 @@ function gallery_list($sorter = null, $direction = null, $currentPage = 1, $page
     } else {
         $_SESSION['SamsonPager_current_page'] = $currentPage;
     }
-
+    /*
     $query = dbQuery('photo');
 
     if (isset($sorter) && in_array($sorter, array('date', 'size'))) {
@@ -68,9 +68,6 @@ function gallery_list($sorter = null, $direction = null, $currentPage = 1, $page
 
 function gallery__HANDLER()
 {
-    unset($_SESSION['SamsonPager_current_page']);
-    unset($_SESSION['sorter']);
-    unset($_SESSION['direction']);
     gallery_list();
 }
 

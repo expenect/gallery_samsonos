@@ -6,6 +6,8 @@ s(document.body).pageInit(function(body){
     });
 });
 
+var pager = s('#pager');
+
 var edit = function(btn){
     btn.tinyboxAjax({
         // Set the response container name

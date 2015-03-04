@@ -32,11 +32,15 @@ function dictionary()
             "Invalid file type may only upload jpeg, jpg, png" => "Неверный тип файла , возможно загружать только jpeg , jpg , png",
             "Fields discription empty" => "Поле с описанием пусто",
             "Size foto exceeded ! Maximum 1MB." => "Размер фото превышен! Максимально возможный 1мб.",
-            "Select your img" => "Выберите фото"
+            "Select your img" => "Выберите фото",
+            "Size_upl" => "Размер",
+            "Date_upl" => "Дата загрузки",
+            "Delete img" => "Удалить фото"
         ),
         "en"    =>array(
             "Все" => "All",
-
+            "Size_upl" => "Size",
+            "Date_upl" => "Date upload",
         ),
         "ua" =>array(
             "Edit" => "Редагувати",
@@ -59,7 +63,11 @@ function dictionary()
             "Invalid file type may only upload jpeg, jpg, png" => "Невірний тип файлу, можливо завантажувати лише jpeg,jpg,png",
             "Fields discription empty" => "Поле з описом пусте",
             "Size foto exceeded ! Maximum 1MB." => "Розмір картинки перевищено! Максимально можливий 1мб.",
-            "Select your img" => "Оберіть своє фото"
+            "Select your img" => "Оберіть своє фото",
+            "Size_upl" => "Розмір",
+            "Date_upl" => "Дата завантаження",
+            "Upload photo"  =>  "Завантажити фото",
+            "Delete img" => "Видалити фото"
         )
     );
 }
