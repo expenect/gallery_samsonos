@@ -184,9 +184,9 @@ function gallery_async_upload()
         // Save file size to the DB
         $dbItem->size = $upload->size();
         // Save the original name of the picture in the DB
-        $name = substr($realName,strpos($realName,"."));
+        $len_type = substr($realName,strpos($realName,"."));
 
-        $dbItem->description = substr($realName,0,strlen($realName)-strlen($name));
+        $dbItem->description = substr($realName,0,strlen($realName)-strlen($len_type));
 
         $dbItem->date = date("y-m-d h:m:s");
         $dbItem->date_edit = date("y-m-d h:m:s");

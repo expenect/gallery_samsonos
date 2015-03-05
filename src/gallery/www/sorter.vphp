@@ -1,0 +1,10 @@
+<a class="upload_btn" href="<?php url_base('gallery', 'form')?>"><?php t('Upload photo')?></a>
+      <br/>
+      <hr/>
+      <?php t('Sort by:')?>
+      <div id="sort">
+          <a class="sorter" href="<?php url_base('gallery', 'list', 'date', 'ASC', 'currentPage')?>"> <?php t('Date')?> ↗</a>
+          <a class="sorter" href="<?php url_base('gallery', 'list', 'date', 'DESC', 'currentPage')?>"> <?php t('Date')?> ↘</a>
+          <a class="sorter" href="<?php url_base('gallery', 'list', 'size', 'ASC', 'currentPage')?>"> <?php t('Size')?> ↗</a>
+          <a class="sorter" href="<?php url_base('gallery', 'list', 'size', 'DESC', 'currentPage')?>"> <?php t('Size')?> ↘</a>
+      </div>

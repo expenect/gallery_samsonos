@@ -6,7 +6,7 @@
         </div>
         <div id="line2">
             <!--        Load pager-->
-            <ul id="pager"><?php iv('pager_html')?></ul>
+            <ul id="pager"><?php iv('pagger_html')?></ul>
             <!--        Load language switcher-->
 
         </div>

@@ -2,7 +2,7 @@
 	<head>
         <title><?php iv('title')?></title>
 	</head>
-	
+
 	<body id="<?php iv('id')?>">
     <div id="layer_head">
         <div class="wrapper">

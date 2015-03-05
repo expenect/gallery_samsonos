@@ -1,6 +1,6 @@
 <div class="item_gallery">
 
-    <a href="<?php url_base('gallery', 'delete', 'img_id', 'list', 'sorter',  'direction', 'current_page')?>" class="btn delete">
+    <a href="<?php url_base('gallery', 'delete', 'img_id', 'list', 'sorter',  'direction', 'currentPage')?>" class="btn delete">
         <img src="img/delete.png" class="img_delete btn"/>
     </a>
 
