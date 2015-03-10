@@ -15,8 +15,8 @@ var edit = function(btn){
         // Close tinybox on click elsewhere besides the box
         oneClickClose : true,
         renderedHandler : function(form, tb) {
-            uploadForm = s('form', form);
-            uploadForm.ajaxSubmit(function(response){
+            //
+            s('form', form).ajaxSubmit(function(response){
                 // Call load function after uploading the file
                 load(response);
                 // Close tinybox
@@ -60,6 +60,7 @@ var load = function(response)
         s('#pager').html(response.pager);
         s('#line1').html(response.sorter);
     }
+
     s('li a', pager).ajaxClick(load);
     s('.logo_url').ajaxClick(load);
     s('.sorter').ajaxClick(load);

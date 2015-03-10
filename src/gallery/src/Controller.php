@@ -65,7 +65,7 @@ class Gallery extends \samson\core\CompressableExternalModule
     }
 
 
-    public function __async_form ($id = null)
+    public function __async_form($id = null)
     {
         $result = array ("status" => 1);
 
@@ -91,11 +91,23 @@ class Gallery extends \samson\core\CompressableExternalModule
 
         if (false != ($dbItem = Img::byId($id))) {
             $form = $this->view('/form/newfile')->img($dbItem)->output();
-            $result['form'] = $this->view('/form/index')->form($form)->title('Redact form')->sorter($sorter)->currentPage($currentPage)->direction($direction)->img($dbItem)->output();
+            $result['form'] = $this->view('/form/index')
+                                    ->form($form)
+                                    ->title('Redact form')
+                                    ->sorter($sorter)
+                                    ->currentPage($currentPage)
+                                    ->direction($direction)
+                                    ->img($dbItem)
+                                    ->output();
         } elseif (isset($id)) {
             $result['form'] = $this->view('/form/not_found')->title('Not found image')->output();
         } else {
-            $result['form'] = $this->view('/form/newfile')->title('New file')->sorter($sorter)->currentPage($currentPage)->direction($direction)->output();
+            $result['form'] = $this->view('/form/newfile')
+                                    ->title('New file')
+                                    ->sorter($sorter)
+                                    ->currentPage($currentPage)
+                                    ->direction($direction)
+                                    ->output();
         }
 
         return $result;
@@ -113,13 +125,11 @@ class Gallery extends \samson\core\CompressableExternalModule
              * in case of success store record into $dbItem variable.
              */
             if (false != ($dbItem = Img::byID($id))) {
-                // Update image name in DB
-                $dbItem->updateName(filter_var($_POST['description']));
-                // Change the request status for successful asynchronous action
-                $result = array('status' => 1);
+                $dbItem->updateRecord(filter_var($_POST['description']), $_FILES['file']);
+                $result['status'] = 1;
             }
         }
-        return $result;
+            return $result;
     }
 
     public function __async_delete($id)
@@ -146,9 +156,9 @@ class Gallery extends \samson\core\CompressableExternalModule
          * delete old picture from server without deleting DB record.
          * Otherwise create new instance of \gallery\Image
          */
-    //    if (false != ($dbItem = Img::byID($id))) {
-      //      $dbItem->delete(false);
-       // } else {
+     //  if (false != ($dbItem = Img::byID($id))) {
+     //      $dbItem->delete(false);
+     //  } else {
             /** @var \gallery\Img $dbItem */
             $dbItem = new Img(false);
         //}
@@ -157,7 +167,6 @@ class Gallery extends \samson\core\CompressableExternalModule
          * set the request status to 1 for successful asynchronous action
          */
         if ($dbItem->save(new \samsonphp\upload\Upload(array('png', 'jpg', 'jpeg', 'gif')))) {
-
             $result['status'] = 1;
         }
         return $result;

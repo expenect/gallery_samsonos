@@ -9,8 +9,9 @@
         <form action="<?php url_base('gallery', 'save', 'list', 'sorter', 'direction', 'currentPage')?>/" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php iv('img_id')?>">
             <?php t('Description');?>: <input name="description" value="<?php iv('img_description')?>">
-            <input type="file" name="img"  <?php if(!isv('img_description')):?>  <?php endif?> value="<?php iv('img_url')?>">
-            <input type="submit" value="<?php t('Save')?>">
+           <!-- <input type="file" name="img"  <?php if(!isv('img_description')):?>  <?php endif?> value="<?php iv('img_url')?>">-->
+                <input class="__example_upload" type="file" name="file">
+                <input type="submit" value="<?php t('Save')?>">
         </form>
     </div>
 </div>

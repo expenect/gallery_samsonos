@@ -19,8 +19,6 @@ class Collection extends Generic
 
     public $pager;
 
-    public $query;
-
     public function __construct($renderer, $sorter, $direction, \samson\pager\Pager $pager, $currentPage)
     {
         parent::__construct($renderer);

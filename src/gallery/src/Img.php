@@ -28,10 +28,24 @@ class Img extends \samson\activerecord\photo
         }
     }
 
-    public function updateName($name)
+    public function updateRecord($name, $img)
     {
         $this->description = $name;
-        $this->date_edit = date("y-m-d h:m:s");
+        $type = substr($img['name'], strpos($img['name'], "."));
+        $new_name = 'upload/'.md5(time()).$type;
+
+        if (!is_dir('upload')) {
+            mkdir('upload', 0777);
+        }
+
+        if (move_uploaded_file($img['tmp_name'], $new_name)) {
+            unlink(substr($this->url, 1, strlen($this->url)-1));
+            $this ->url = '/'.$new_name;
+            $this->size = $img['size'];
+        }
+
+        $this->date_edit = date("y-m-d H:i:s");
+
         // Execute the query
         parent::save();
     }
@@ -54,8 +68,8 @@ class Img extends \samson\activerecord\photo
 
             $this->description = empty($this->description) ? $realName : $this->description;
 
-            $this->date_edit = date("y-m-d h:m:s");
-            $this->date = date("y-m-d h:m:s");
+            $this->date_edit = date("y-m-d H:i:s");
+            $this->date = date("y-m-d H:i:s");
             $result = true;
         }
 
